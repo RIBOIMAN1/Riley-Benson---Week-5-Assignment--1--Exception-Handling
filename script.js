@@ -16,15 +16,15 @@ function primitiveMultiply(a, b) {
   }
 }
 
-function reliableMultiply(a, b) {
-  while (true) {
-    try {
-      return primitiveMultiply(a, b);
-    } catch (e) {
-      if (!(e instanceof MultiplicatorUnitFailure)) {
-        throw e;
+function reliableMultiply(a, b) { // This function repeatedly attempts to multiply two numbers until it succeeds
+  while (true) { // Keeps trying indefinitely until a successful multiplication occurs
+    try { // Executes the following code that might throw an error
+      return primitiveMultiply(a, b); // Calls the primitiveMultiply function to multiply a and b, returning the result if no error occurs
+    } catch (e) { // Handles any errors that occur in the try block
+      if (!(e instanceof MultiplicatorUnitFailure)) { // Continues to handle the error only if it is a MultiplicatorUnitFailure
+        throw e; // Re-throws the error if it is of a different type
       }
     }
   }
 }
-console.log(reliableMultiply(5, 6));
+console.log(reliableMultiply(5, 6)); // Executes reliableMultiply with 5 and 6, and prints the result to the console
